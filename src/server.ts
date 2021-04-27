@@ -1,18 +1,12 @@
+import "reflect-metadata";
 import express from "express";
+import "./database";
+import { router } from "./routes";
 
 const app = express();
 const port = 3333;
 
-app.get("/", (request, response) => {
-  return response.json({
-    message: "Hello",
-  });
-});
-
-app.post("/", (request, response) => {
-  return response.json({
-    message: "Data saved successfully",
-  });
-});
+app.use(express.json());
+app.use(router);
 
 app.listen(port, () => console.log(`Server is running on the port: ${port}`));
